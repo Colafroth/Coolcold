@@ -14,7 +14,7 @@ module.exports.loop = function () {
     // console.log('Harvesters: ' + harvesters.length);
     
 
-    console.log(`Value: ${Game.creeps.length} ${Game.creeps}`)
+    console.log(`Value: ${Object.keys(Game.creeps).length}`)
 
     if(Game.creeps.length % 4 == 2) {
         var newName = 'Upgrader' + Game.time;
