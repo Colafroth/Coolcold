@@ -13,15 +13,14 @@ module.exports.loop = function () {
     // var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     // console.log('Harvesters: ' + harvesters.length);
     
+    let genValue = Object.keys(Game.creeps).length
 
-    console.log(`Value: ${Object.keys(Game.creeps).length}`)
-
-    if(Game.creeps.length % 4 == 2) {
+    if(genValue % 4 == 2) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'upgrader'}}); 
-    } else if(Game.creeps.length % 4 == 3) {
+    } else if(genValue % 4 == 3) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
