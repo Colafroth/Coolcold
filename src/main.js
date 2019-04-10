@@ -19,6 +19,8 @@ module.exports.loop = function () {
     let sources = Game.rooms['W13N3'].find(FIND_SOURCES);
     let randomHarvest = Math.floor(Math.random() * sources.length, sources.length)
 
+    console.log(`harvest rand ${randomHarvest}`)
+
     if(genValue % 5 == 1 || genValue % 5 == 2) {
         var newName = 'Upgrader' + Game.time;
         result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
