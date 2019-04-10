@@ -16,7 +16,7 @@ module.exports.loop = function () {
     
     let genValue = Object.keys(Game.creeps).length
     let result
-    let sources = creep.room.find(FIND_SOURCES);
+    let sources = Game.rooms['W13N3'].find(FIND_SOURCES);
     let randomHarvest = Math.floor(Math.random(), sources.length)
 
     if(genValue % 5 == 1 || genValue % 5 == 2) {
