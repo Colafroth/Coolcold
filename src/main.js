@@ -17,14 +17,15 @@ module.exports.loop = function () {
     let genValue = Object.keys(Game.creeps).length
     let result
     let sources = Game.rooms['W13N3'].find(FIND_SOURCES);
+    let randomRole = Math.floor(Math.random() * 3, 3)
     let randomHarvest = Math.floor(Math.random() * sources.length, sources.length)
 
     if (genValue <= 18) {
-        if (genValue % 3 == 0) {
+        if (randomRole == 0) {
             var newName = 'Upgrader' + Game.time;
             result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
                 {memory: {role: 'upgrader', harvest: randomHarvest}}); 
-        } else if(genValue % 3 == 1) {
+        } else if(randomRole == 1) {
             var newName = 'Builder' + Game.time;
             result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
                 {memory: {role: 'builder'}}); 
