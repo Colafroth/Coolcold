@@ -16,19 +16,21 @@ module.exports.loop = function () {
     
     let genValue = Object.keys(Game.creeps).length
     let result
+    let sources = creep.room.find(FIND_SOURCES);
+    let randomHarvest = Math.floor(Math.random(), sources.length)
 
-    if(genValue % 4 == 2) {
+    if(genValue % 5 == 1 || genValue % 5 == 2) {
         var newName = 'Upgrader' + Game.time;
         result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'upgrader'}}); 
-    } else if(genValue % 4 == 3) {
+            {memory: {role: 'upgrader', harvest: randomHarvest}}); 
+    } else if(genValue % 5 == 3) {
         var newName = 'Builder' + Game.time;
         result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
             {memory: {role: 'builder'}}); 
     } else {
         var newName = 'Harvester' + Game.time;
         result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'harvester'}});
+            {memory: {role: 'harvester', harvest: randomHarvest}});
     }
 
     if (result == 0) {
