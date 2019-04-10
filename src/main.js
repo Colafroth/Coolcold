@@ -19,8 +19,6 @@ module.exports.loop = function () {
     let sources = Game.rooms['W13N3'].find(FIND_SOURCES);
     let randomHarvest = Math.floor(Math.random() * sources.length, sources.length)
 
-    console.log(`harvest rand ${randomHarvest}`)
-
     if(genValue % 5 == 1 || genValue % 5 == 2) {
         var newName = 'Upgrader' + Game.time;
         result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
@@ -48,6 +46,8 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
+    createRoad()
+
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -62,3 +62,14 @@ module.exports.loop = function () {
     }
 }
 
+function createRoad() {
+    var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+        for (var j = 0; j < sources.length; j++)
+        {
+            var chemin = Game.spawns['Spawn1'].pos.findPathTo(sources[j].pos);
+            for (var i = 0; i < chemin.length; i++) 
+            {
+                Game.spawns['Spawn1'].room.createConstructionSite(chemin[i].x,chemin[i].y, STRUCTURE_ROAD);
+            }
+        }
+}
