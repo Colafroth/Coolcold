@@ -19,20 +19,22 @@ module.exports.loop = function () {
     let sources = Game.rooms['W13N3'].find(FIND_SOURCES);
     let randomHarvest = Math.floor(Math.random() * sources.length, sources.length)
 
-    if(genValue % 3 == 0) {
-        var newName = 'Upgrader' + Game.time;
-        result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'upgrader', harvest: randomHarvest}}); 
-    } else if(genValue % 3 == 1) {
-        var newName = 'Builder' + Game.time;
-        result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'builder'}}); 
-    } else {
-        var newName = 'Harvester' + Game.time;
-        result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
-            {memory: {role: 'harvester', harvest: randomHarvest}});
+    if (genValue <= 12) {
+        if (genValue % 3 == 0) {
+            var newName = 'Upgrader' + Game.time;
+            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+                {memory: {role: 'upgrader', harvest: randomHarvest}}); 
+        } else if(genValue % 3 == 1) {
+            var newName = 'Builder' + Game.time;
+            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+                {memory: {role: 'builder'}}); 
+        } else {
+            var newName = 'Harvester' + Game.time;
+            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+                {memory: {role: 'harvester', harvest: randomHarvest}});
+        }
     }
-
+    
     if (result == 0) {
         console.log('Spawning new screep: ' + newName);
     }
