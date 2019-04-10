@@ -22,19 +22,19 @@ module.exports.loop = function () {
     if (genValue <= 12) {
         if (genValue % 3 == 0) {
             var newName = 'Upgrader' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName,
                 {memory: {role: 'upgrader', harvest: randomHarvest}}); 
         } else if(genValue % 3 == 1) {
             var newName = 'Builder' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName,
                 {memory: {role: 'builder'}}); 
         } else {
             var newName = 'Harvester' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName,
                 {memory: {role: 'harvester', harvest: randomHarvest}});
         }
     }
-    
+
     if (result == 0) {
         console.log('Spawning new screep: ' + newName);
     }
