@@ -1,6 +1,7 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
+let roleHarvester = require('role.harvester');
+let roleUpgrader = require('role.upgrader');
+let roleBuilder = require('role.builder');
+let roleRepairer = require('role.repairer');
 
 module.exports.loop = function () {
 
@@ -11,8 +12,7 @@ module.exports.loop = function () {
         }
     }
 
-    // var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    // console.log('Harvesters: ' + harvesters.length);
+    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     
     let genValue = Object.keys(Game.creeps).length
     let result
@@ -21,17 +21,21 @@ module.exports.loop = function () {
     let randomHarvest = Math.floor(Math.random() * sources.length, sources.length)
 
     if (genValue <= 18) {
-        if (randomRole == 0) {
+        if (repairers.length == 0) {
+            var newName = 'Repairer' + Game.time;
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+                {memory: {role: 'repairer', harvest: randomHarvest}});  
+        } else if (randomRole == 0) {
             var newName = 'Upgrader' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
                 {memory: {role: 'upgrader', harvest: randomHarvest}}); 
         } else if(randomRole == 1) {
             var newName = 'Builder' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
-                {memory: {role: 'builder'}}); 
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
+                {memory: {role: 'builder', harvest: randomHarvest}}); 
         } else {
             var newName = 'Harvester' + Game.time;
-            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
+            result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
                 {memory: {role: 'harvester', harvest: randomHarvest}});
         }
     }
@@ -61,6 +65,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep);
+        }
+        if(creep.memory.role == 'repairer') {
+            roleRepairer.run(creep);
         }
     }
 }
