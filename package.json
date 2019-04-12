@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/Colafroth/Coolcold#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.123",
+    "@types/screeps": "^2.5.3",
     "grunt-screeps": "^1.4.0"
   }
 }
