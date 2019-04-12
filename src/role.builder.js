@@ -21,6 +21,13 @@ var roleBuilder = {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
+            } else {
+                let targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return structure.structureType == STRUCTURE_SPAWN
+                    }
+                });
+                creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
             }
         }
         else {
