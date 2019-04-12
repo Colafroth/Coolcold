@@ -1,2 +1,1 @@
-# Coolcold
-Screeps AI
+# Colafroth AI for Screeps
