@@ -30,7 +30,7 @@ module.exports.loop = function () {
             result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
                 {memory: {role: 'upgrader', harvest: randomHarvest}}); 
         } else if(randomRole == 1) {
-            var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+            var targets = Game.rooms['W13N3'].find(FIND_CONSTRUCTION_SITES);
             if (targets.length > 0) {
                 var newName = 'Builder' + Game.time;
                 result = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], newName,
